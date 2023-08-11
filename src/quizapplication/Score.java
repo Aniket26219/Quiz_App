@@ -62,7 +62,11 @@ public class Score extends JFrame implements ActionListener {
             new Login();
         }
         else{
-            setVisible(false);
+            quit.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent ae){
+                    System.exit(0);
+                }
+            });
         }
     }
 

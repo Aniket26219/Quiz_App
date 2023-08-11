@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener{
 
-    JButton next, back;
     JTextField tfname;
 
     Login(){
@@ -35,19 +34,22 @@ public class Login extends JFrame implements ActionListener{
         tfname.setFont(new Font("Times New roman", Font.BOLD, 20));
         add(tfname);
 
-        next = new JButton("Next");
+        JButton next = new JButton("Next");
         next.setBounds(1030, 400, 90, 40);
         next.setForeground(Color.WHITE);
         next.setBackground(new Color(30, 144, 254));
         next.addActionListener(this);
         add(next);
 
-        back = new JButton("Back");
+        JButton back = new JButton("Back");
         back.setBounds(600, 400, 90, 40);
         back.setForeground(Color.WHITE);
         back.setBackground(new Color(30, 144, 254));
-        back.addActionListener(this);
-        add(back);
+        back.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent ae){
+                System.exit(0);
+            }
+        });        add(back);
 
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -59,16 +61,9 @@ public class Login extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent ae) {
 
-        if(ae.getSource() == next) {
-
             String name = tfname.getText();
             setVisible(false);
             new Next(name);
-        }
-
-        else if(ae.getSource() == back) {
-            setVisible(false);
-        }
     }
 
     public static void main(String[] args) {
